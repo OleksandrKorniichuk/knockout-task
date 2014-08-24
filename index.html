@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+	<title>Knockout.JS</title>
+</head>
+<body>
+	<h1>Легкое использование существующих электронных документов (инструкций)
+	</h1>
+	<section class="list-of-references">
+		<p class="list-references-and-mail">Список литературы:</p>
+		<ul class="list-of-references-ul" data-bind = "foreach : listOfReferences.References">
+			<li class="list-of-references-li">
+				<img data-bind = "attr: {src: img, alt: alt }">
+				<p class="index" data-bind = "text: index+'.'"></p>
+				<p class="title" data-bind = "text: title"></p>
+				<input type="checkbox" data-bind="checked: isChecked" />
+			</li>			
+		</ul>
+	</section>	
+	<aside class="send-mail">
+		<form id="form" action="#" method="post">
+   			<p class="list-references-and-mail">Отправка письма:</p>   			
+   			<p>
+				<label for="email">E-mail:</label>
+				<input type="text" name="email" size="30" data-bind="value: email" />
+			</p>
+			<p>
+ 				<label for="name">Тема:</label>
+ 				<input type="text" name="name" size="30" data-bind="value: text" />
+			</p>
+			<p>
+				<label for="message">Текст сообщения:</label>
+				<textarea name="message" cols="30" rows="10" data-bind="value: textarea"></textarea>
+			</p>	
+   			<p>Прикрепленные файлы:</p>  
+   			<ul class="list-of-references-ul" data-bind = "foreach : isCheckedReferences()">
+				<li>
+					<p class="index" data-bind = "text: index+'.'"></p>
+					<p class="title" data-bind = "text: title"></p>				
+				</li>
+			</ul>
+			<p><input type="submit" value="Отправить" data-bind="click: ShowAll"></p>
+		</form>		
+	</aside>
+	<div class="popup" data-bind="css: popupActive">
+		<p>
+			<label for="email"><br>Ваш е-mail:</label>
+			<input type="text" name="email" size="30" data-bind="value: email" />
+		</p>
+		<p>
+ 			<label for="name"><br>Тема:</label>
+ 			<input type="text" name="name" size="30" data-bind="value: text" />
+		</p>
+		<p>
+			<label for="message"><br>Текст сообщения:</label>
+			<textarea name="message" data-bind="value: textarea"></textarea>
+		</p>	
+   		<p>Вы выбрали:</p>  
+   		<ul class="list-of-references-ul" data-bind = "foreach : isCheckedReferences()">
+			<li class="popup-li">
+				<p class="index" data-bind = "text: index+'.'"></p>
+				<p class="title popup-title" data-bind = "text: title"></p>				
+			</li>
+		</ul>
+		<button class="back" data-bind="click: back">Назад</button>
+	</div>
+	<script src="scripts/knockout-3.1.0.js"></script>
+	<script src="scripts/knockout-task.js"></script>
+</body>
+</html>
